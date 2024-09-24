@@ -2,7 +2,7 @@
 //  SegueFromRight.swift
 //  Sorting_Visualizer_IOS
 //
-//  Created by Michael Benliyan on 10/29/22.
+//  Created by Ayush Rajpal on 05/05/24.
 //
 
 import UIKit
