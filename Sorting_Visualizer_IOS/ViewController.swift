@@ -26,6 +26,8 @@ class ViewController: UIViewController {
     var bars: [UIProgressView] = []
     var barValues : [Float] = []
     var maxVal = 10
+    var isSorting = false
+    var shouldStopSorting = false
 //************************************************************
     // View Did Load
     
@@ -44,20 +46,44 @@ class ViewController: UIViewController {
     // Handle Buttons
     
     @IBAction func bubbleSortPressed(_ sender: UIButton) {
+        if(isSorting) {
+            shouldStopSorting = true
+            return
+        }
+        shouldStopSorting = false
+        isSorting = true
         titleText.text = "Bubble Sort"
         bubbleSort()
     }
     
     @IBAction func selectionSortPressed(_ sender: UIButton) {
+        if(isSorting) {
+            shouldStopSorting = true
+            return
+        }
+        shouldStopSorting = false
+        isSorting = true
         titleText.text = "Selection Sort"
         selectionSort()
     }
     
     @IBAction func heapSortPressed(_ sender: UIButton) {
+        if(isSorting) {
+            shouldStopSorting = true
+            return
+        }
+        shouldStopSorting = false
+        isSorting = true
         titleText.text = "Heap Sort"
         heapSort()
     }
     @IBAction func resetButtonPressed(_ sender: UIButton) {
+        if(isSorting) {
+            shouldStopSorting = true
+            return
+        }
+        shouldStopSorting = false
+        isSorting = true
         titleText.text = "Sorting Visualizer"
         fillBarValues()
         updateBars()
@@ -98,6 +124,10 @@ class ViewController: UIViewController {
     // Sorting Algos
     
     func bubbleSort(i: Int = 0 ,sorted: Bool = true, completed: Int = 12) {
+        if shouldStopSorting {
+              isSorting = false
+              return
+          }
         print(completed)
         var isSorted = sorted
         if i < barValues.count-1 {
@@ -114,6 +144,10 @@ class ViewController: UIViewController {
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.18) {
+            if self.shouldStopSorting {
+                self.isSorting = false
+                  return
+              }
             if (i+1) > completed {
                 self.bars[i+1].progressTintColor = #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
             } else {
@@ -137,6 +171,10 @@ class ViewController: UIViewController {
     }
     
     func selectionSort(i: Int = 0, minIndex: Int = 0, startPos: Int = 0) {
+        if shouldStopSorting {
+              isSorting = false
+              return
+          }
         var minIndex = minIndex
         var startPos = startPos
         if i < barValues.count {
@@ -169,6 +207,10 @@ class ViewController: UIViewController {
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            if self.shouldStopSorting {
+                self.isSorting = false
+                  return
+              }
             if startPos == self.barValues.count-1 {
                 self.bars[startPos].progressTintColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
                 return
@@ -187,7 +229,15 @@ class ViewController: UIViewController {
     
     //Solution 1, Iteration, Time O(nlogn), Space O(1)
     func heapSort(isHeap: Bool = false, f: Int? = nil, j: Int? = nil, k: Int? = nil, top: Float? = nil, sent: Bool = false) {
+        if shouldStopSorting {
+              isSorting = false
+              return
+          }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            if self.shouldStopSorting {
+                self.isSorting = false
+                  return
+              }
             var finishedRound: Bool = false
             let n = self.barValues.count;
             var j = j
