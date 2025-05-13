@@ -53,6 +53,9 @@ class ViewController: UIViewController {
         shouldStopSorting = false
         isSorting = true
         titleText.text = "Bubble Sort"
+        fillBarValues()
+        updateBars()
+        resetBarColor()
         bubbleSort()
     }
     
@@ -64,6 +67,9 @@ class ViewController: UIViewController {
         shouldStopSorting = false
         isSorting = true
         titleText.text = "Selection Sort"
+        fillBarValues()
+        updateBars()
+        resetBarColor()
         selectionSort()
     }
     
@@ -75,6 +81,9 @@ class ViewController: UIViewController {
         shouldStopSorting = false
         isSorting = true
         titleText.text = "Heap Sort"
+        fillBarValues()
+        updateBars()
+        resetBarColor()
         heapSort()
     }
     @IBAction func resetButtonPressed(_ sender: UIButton) {
