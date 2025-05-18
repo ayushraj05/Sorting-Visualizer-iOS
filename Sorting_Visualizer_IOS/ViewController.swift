@@ -236,7 +236,6 @@ class ViewController: UIViewController {
         print(barValues)
     }
     
-    //Solution 1, Iteration, Time O(nlogn), Space O(1)
     func heapSort(isHeap: Bool = false, f: Int? = nil, j: Int? = nil, k: Int? = nil, top: Float? = nil, sent: Bool = false) {
         if shouldStopSorting {
               isSorting = false
